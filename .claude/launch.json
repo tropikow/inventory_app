@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "inventory-app",
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["/Users/macbook2020/Documents/projects/experiments/claude_code/inventory_app/node_modules/.bin/vite", "--host", "0.0.0.0"],
+      "port": 5173
+    }
+  ]
+}

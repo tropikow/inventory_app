@@ -58,7 +58,6 @@ export default function StockList({ products, onRefresh }: Props) {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Toolbar */}
       <div className="px-4 lg:px-6 py-3 bg-white border-b space-y-2">
         <div className="flex items-center gap-2">
           <div className="relative flex-1">
@@ -81,7 +80,6 @@ export default function StockList({ products, onRefresh }: Props) {
           </button>
         </div>
 
-        {/* Sort pills */}
         <div className="flex gap-1.5 flex-wrap">
           {(['name', 'price', 'stock', 'createdAt'] as SortKey[]).map((key) => {
             const labels: Record<SortKey, string> = { name: 'Nombre', price: 'Precio', stock: 'Stock', createdAt: 'Fecha ingreso' }
@@ -107,7 +105,6 @@ export default function StockList({ products, onRefresh }: Props) {
         </div>
       </div>
 
-      {/* Low stock alert */}
       {lowStockItems.length > 0 && (
         <div className="mx-4 lg:mx-6 mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-2.5">
           <AlertTriangle size={18} className="text-amber-500 shrink-0 mt-0.5" />
@@ -122,7 +119,6 @@ export default function StockList({ products, onRefresh }: Props) {
         </div>
       )}
 
-      {/* List */}
       <div className="flex-1 overflow-y-auto mt-3">
         {sorted.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400 gap-3">
@@ -131,7 +127,6 @@ export default function StockList({ products, onRefresh }: Props) {
           </div>
         ) : (
           <>
-            {/* Desktop table */}
             <div className="hidden lg:block px-6">
               <table className="w-full text-sm">
                 <thead>
@@ -198,7 +193,6 @@ export default function StockList({ products, onRefresh }: Props) {
               </table>
             </div>
 
-            {/* Mobile card list */}
             <div className="lg:hidden divide-y divide-gray-100">
               {sorted.map((product) => {
                 const isLow = product.stock <= product.lowStockThreshold

@@ -27,7 +27,6 @@ export default function PaymentModal({ total, onConfirm, onClose, saving = false
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-4">
       <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl">
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <h2 className="text-lg font-bold text-gray-900">Confirmar Pago</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-gray-100">
@@ -36,13 +35,11 @@ export default function PaymentModal({ total, onConfirm, onClose, saving = false
         </div>
 
         <div className="px-6 py-5 space-y-5">
-          {/* Total */}
           <div className="bg-blue-50 rounded-xl p-4 text-center">
             <p className="text-sm text-blue-600 font-medium mb-1">Total a cobrar</p>
             <p className="text-4xl font-bold text-blue-700">{formatCurrency(total)}</p>
           </div>
 
-          {/* Payment method */}
           <div>
             <p className="text-sm font-semibold text-gray-700 mb-2">Método de pago</p>
             <div className="grid grid-cols-3 gap-2">
@@ -63,7 +60,6 @@ export default function PaymentModal({ total, onConfirm, onClose, saving = false
             </div>
           </div>
 
-          {/* Amount received */}
           <div>
             <label className="text-sm font-semibold text-gray-700 block mb-2">
               Monto recibido ({method === 'cash' ? 'Efectivo' : method === 'transfer' ? 'Transferencia' : 'Tarjeta'})
@@ -83,7 +79,6 @@ export default function PaymentModal({ total, onConfirm, onClose, saving = false
             </div>
           </div>
 
-          {/* Change */}
           {numReceived > 0 && (
             <div className={`flex items-center gap-3 p-4 rounded-xl ${
               isValid ? (change > 0 ? 'bg-green-50' : 'bg-gray-50') : 'bg-red-50'
@@ -104,7 +99,6 @@ export default function PaymentModal({ total, onConfirm, onClose, saving = false
           )}
         </div>
 
-        {/* Actions */}
         <div className="px-6 pb-6 flex gap-3">
           <button
             onClick={onClose}

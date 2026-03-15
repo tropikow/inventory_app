@@ -98,7 +98,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 bg-white border-b">
         <button onClick={onBack} className="p-1.5 rounded-lg hover:bg-gray-100">
           <ArrowLeft size={20} />
@@ -116,7 +115,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
 
       <div className="flex-1 overflow-y-auto">
         <div className="px-4 py-4 space-y-4">
-          {/* Image */}
           <div className="flex flex-col items-center gap-2">
             <div
               onClick={() => fileRef.current?.click()}
@@ -140,7 +138,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImage} />
           </div>
 
-          {/* Barcode */}
           <Field label="Código de Barras" Icon={Barcode} error={errors.barcode} required>
             <input
               type="text"
@@ -151,7 +148,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             />
           </Field>
 
-          {/* Name */}
           <Field label="Nombre del producto" Icon={Package} error={errors.name} required>
             <input
               type="text"
@@ -162,7 +158,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             />
           </Field>
 
-          {/* Price */}
           <Field label="Precio unitario" Icon={DollarSign} error={errors.price} required>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
@@ -178,7 +173,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             </div>
           </Field>
 
-          {/* Stock */}
           <Field label="Cantidad en stock" Icon={Package} error={errors.stock} required>
             <input
               type="number"
@@ -190,7 +184,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             />
           </Field>
 
-          {/* Low stock threshold */}
           <Field label="Alerta stock bajo (unidades)" Icon={AlertTriangle} error={errors.lowStockThreshold}>
             <input
               type="number"
@@ -202,7 +195,6 @@ export default function ProductForm({ product, onBack, onSaved }: Props) {
             />
           </Field>
 
-          {/* Discount toggle */}
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

@@ -1,8 +1,6 @@
 import type { Product, Sale, SaleItem, AppUser } from '../types'
 import type { ProductRow, SaleWithItems, SaleItemRow, AppUserRow } from './database.types'
 
-// ── DB → App ─────────────────────────────────────────────────────────────────
-
 export function toProduct(row: ProductRow): Product {
   return {
     id:                 row.id,
@@ -50,8 +48,6 @@ export function toSale(row: SaleWithItems): Sale {
 export function toAppUser(row: AppUserRow): AppUser {
   return { name: row.name }
 }
-
-// ── App → DB Insert ──────────────────────────────────────────────────────────
 
 export function fromProduct(p: Product): Omit<ProductRow, 'created_at'> {
   return {

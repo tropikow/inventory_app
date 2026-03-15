@@ -54,7 +54,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
     { value: 'year', label: 'Año' },
   ]
 
-  // Week drill-down
   if (filter === 'week' && selectedWeekKey) {
     const weekSales = groupSalesByWeek(filtered)[selectedWeekKey] || []
     const dayGroups = groupSalesByDay(weekSales)
@@ -118,7 +117,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Filter tabs + summary */}
       <div className="px-4 lg:px-6 py-3 bg-white border-b flex items-center gap-4">
         <div className="flex gap-1 bg-gray-100 rounded-xl p-1">
           {filters.map(({ value, label }) => (
@@ -133,7 +131,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
             </button>
           ))}
         </div>
-        {/* Desktop summary chips */}
         <div className="hidden lg:flex items-center gap-3 ml-auto">
           <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-xl">
             <DollarSign size={15} className="text-blue-600" />
@@ -152,7 +149,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
         </div>
       </div>
 
-      {/* Mobile summary bar */}
       <div className="lg:hidden px-4 py-3 bg-blue-600 text-white grid grid-cols-2 gap-3">
         <div className="bg-blue-700/50 rounded-xl p-3">
           <p className="text-xs text-blue-200 mb-0.5">Total ventas</p>
@@ -171,9 +167,7 @@ export default function SalesList({ sales, onRefresh }: Props) {
             <p className="text-sm">No hay ventas en este período</p>
           </div>
         ) : filter === 'day' ? (
-          /* Day view */
           <div>
-            {/* Desktop table header */}
             <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto_auto_auto] gap-4 px-6 py-2.5 bg-gray-50 border-b text-xs uppercase tracking-wide text-gray-500 font-semibold">
               <span>Cajero</span>
               <span>Hora</span>
@@ -191,7 +185,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
                     onClick={() => setSelectedSale(sale)}
                     className="w-full text-left hover:bg-gray-50 transition-colors"
                   >
-                    {/* Desktop row */}
                     <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto_auto_auto] gap-4 items-center px-6 py-3.5">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center shrink-0 text-blue-700 font-bold text-sm uppercase">
@@ -210,7 +203,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
                         <ChevronRight size={16} className="text-gray-400" />
                       </div>
                     </div>
-                    {/* Mobile card */}
                     <div className="lg:hidden px-4 py-3.5 flex items-center gap-3">
                       <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
                         <Clock size={18} className="text-blue-600" />
@@ -231,7 +223,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
             </div>
           </div>
         ) : filter === 'week' ? (
-          /* Week view */
           <div>
             <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto] gap-4 px-6 py-2.5 bg-gray-50 border-b text-xs uppercase tracking-wide text-gray-500 font-semibold">
               <span>Semana</span>
@@ -248,7 +239,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
                     onClick={() => setSelectedWeekKey(weekStart)}
                     className="w-full text-left hover:bg-gray-50 transition-colors"
                   >
-                    {/* Desktop */}
                     <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto] gap-4 items-center px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center shrink-0">
@@ -265,7 +255,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
                         <ChevronRight size={16} className="text-gray-400" />
                       </div>
                     </div>
-                    {/* Mobile */}
                     <div className="lg:hidden px-4 py-3.5 flex items-center gap-3">
                       <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center shrink-0">
                         <Calendar size={18} className="text-purple-600" />
@@ -285,7 +274,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
             </div>
           </div>
         ) : filter === 'month' ? (
-          /* Month view: group by day */
           <div>
             {Object.entries(groupSalesByDay(filtered))
               .sort(([a], [b]) => b.localeCompare(a))
@@ -323,7 +311,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
               ))}
           </div>
         ) : (
-          /* Year view: group by month */
           <div>
             <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto] gap-4 px-6 py-2.5 bg-gray-50 border-b text-xs uppercase tracking-wide text-gray-500 font-semibold">
               <span>Mes</span>
@@ -342,7 +329,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
               .sort(([a], [b]) => b.localeCompare(a))
               .map(([month, monthSales]) => (
                 <div key={month} className="border-b">
-                  {/* Desktop */}
                   <div className="hidden lg:grid grid-cols-[1fr_auto_auto_auto] gap-4 items-center px-6 py-4">
                     <p className="font-semibold text-gray-900 capitalize">
                       {format(parseISO(month + '-01'), 'MMMM yyyy', { locale: es })}
@@ -351,7 +337,6 @@ export default function SalesList({ sales, onRefresh }: Props) {
                     <span className="text-sm font-medium text-green-600">{formatCurrency(sumProfit(monthSales))}</span>
                     <span className="font-bold text-gray-900">{formatCurrency(sumSales(monthSales))}</span>
                   </div>
-                  {/* Mobile */}
                   <div className="lg:hidden px-4 py-3.5 flex justify-between items-center">
                     <p className="font-semibold text-gray-900 capitalize">
                       {format(parseISO(month + '-01'), 'MMMM yyyy', { locale: es })}

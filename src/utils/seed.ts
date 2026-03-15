@@ -43,7 +43,6 @@ export async function seedDemoData(): Promise<void> {
     },
   ]
 
-  // Insertar productos
   await Promise.all(products.map(upsertProduct))
 
   const makeSale = (daysAgo: number, hoursAgo: number, cashier: string): Sale => {

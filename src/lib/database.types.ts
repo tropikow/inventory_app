@@ -78,11 +78,9 @@ export interface Database {
   }
 }
 
-// Alias convenientes
 export type ProductRow   = Database['public']['Tables']['products']['Row']
 export type SaleRow      = Database['public']['Tables']['sales']['Row']
 export type SaleItemRow  = Database['public']['Tables']['sale_items']['Row']
 export type AppUserRow   = Database['public']['Tables']['app_users']['Row']
 
-// Sale con items anidados (resultado de select con join)
 export type SaleWithItems = SaleRow & { sale_items: SaleItemRow[] }

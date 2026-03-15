@@ -2,8 +2,6 @@ import { supabase } from '../lib/supabase'
 import { toProduct, toSale, toAppUser, fromProduct, fromSale, fromSaleItems } from '../lib/mappers'
 import type { Product, Sale, AppUser } from '../types'
 
-// ── Products ──────────────────────────────────────────────────────────────────
-
 export async function getProducts(): Promise<Product[]> {
   const { data, error } = await supabase
     .from('products')
@@ -58,8 +56,6 @@ export async function decrementStock(updates: { id: string; qty: number }[]): Pr
   )
 }
 
-// ── Sales ─────────────────────────────────────────────────────────────────────
-
 export async function getSales(): Promise<Sale[]> {
   const { data, error } = await supabase
     .from('sales')
@@ -71,13 +67,11 @@ export async function getSales(): Promise<Sale[]> {
 }
 
 export async function upsertSale(sale: Sale): Promise<void> {
-  // 1. Upsert cabecera de la venta
   const { error: saleError } = await supabase
     .from('sales')
     .upsert(fromSale(sale), { onConflict: 'id' })
   if (saleError) throw saleError
 
-  // 2. Reemplazar items: borrar existentes e insertar los nuevos
   const { error: deleteError } = await supabase
     .from('sale_items')
     .delete()
@@ -100,8 +94,6 @@ export async function deleteSale(id: string): Promise<void> {
     .eq('id', id)
   if (error) throw error
 }
-
-// ── App User ──────────────────────────────────────────────────────────────────
 
 export async function getUser(): Promise<AppUser> {
   const { data, error } = await supabase

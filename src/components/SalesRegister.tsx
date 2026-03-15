@@ -161,9 +161,7 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
 
   return (
     <div className="flex h-full">
-      {/* ── Left: scanner + product table ─────────────────── */}
       <div className="flex-1 flex flex-col min-w-0 border-r border-gray-200">
-        {/* Scanner input */}
         <div className="px-4 lg:px-6 py-3 bg-white border-b">
           <div className="flex gap-2">
             <div className="relative flex-1">
@@ -195,7 +193,6 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
           )}
         </div>
 
-        {/* Empty state */}
         {cart.length === 0 && (
           <div className="flex flex-col items-center justify-center flex-1 text-gray-400 gap-3">
             <ShoppingCart size={52} strokeWidth={1} />
@@ -203,7 +200,6 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
           </div>
         )}
 
-        {/* Desktop table */}
         {cart.length > 0 && (
           <div className="hidden lg:flex flex-col flex-1 overflow-hidden">
             <div className="overflow-y-auto flex-1">
@@ -270,7 +266,6 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
           </div>
         )}
 
-        {/* Mobile card list */}
         {cart.length > 0 && (
           <div className="lg:hidden flex-1 overflow-y-auto divide-y divide-gray-100">
             {cart.map((item) => (
@@ -312,7 +307,6 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
           </div>
         )}
 
-        {/* Mobile summary */}
         {cart.length > 0 && (
           <div className="lg:hidden bg-white border-t px-4 py-4 space-y-2">
             <div className="flex justify-between text-sm text-gray-600">
@@ -333,7 +327,6 @@ export default function SalesRegister({ cashier, onSaleComplete }: Props) {
         )}
       </div>
 
-      {/* ── Right: order summary panel (desktop only) ──────── */}
       <aside className="hidden lg:flex flex-col w-80 xl:w-96 bg-white shrink-0">
         <div className="px-6 py-4 border-b bg-gray-50">
           <h2 className="font-bold text-gray-900 text-base flex items-center gap-2">

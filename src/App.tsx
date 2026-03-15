@@ -31,7 +31,6 @@ export default function App() {
   const [authenticated, setAuthenticated] = useState(false)
   const [authChecked, setAuthChecked] = useState(false)
 
-  // Check existing Supabase session on mount
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       setAuthenticated(!!data.session)
@@ -60,7 +59,6 @@ export default function App() {
     }
   }, [])
 
-  // Load data only when the user is authenticated
   useEffect(() => {
     if (!authenticated) return
     setLoading(true)
@@ -81,7 +79,6 @@ export default function App() {
 
   const lowStock = products.filter((p) => p.stock <= p.lowStockThreshold).length
 
-  // ── Auth / Loading screens ─────────────────────────────
   if (!authChecked || (loading && authenticated)) {
     return (
       <div className="flex items-center justify-center h-svh bg-blue-700 gap-3 text-white">
@@ -119,15 +116,12 @@ export default function App() {
 
   return (
     <div className="flex h-svh bg-gray-100">
-      {/* ── Desktop sidebar ──────────────────────────────── */}
       <aside className="hidden lg:flex flex-col w-56 xl:w-64 bg-blue-700 shrink-0">
-        {/* Logo */}
         <div className="flex items-center gap-2.5 px-5 py-5 border-b border-blue-600">
           <ShoppingCart size={22} className="text-white" />
           <span className="font-bold text-white text-lg tracking-tight">VentaApp</span>
         </div>
 
-        {/* Nav links */}
         <nav className="flex-1 py-4 px-3 space-y-1">
           {tabs.map(({ id, label, Icon }) => {
             const badge = id === 'stock' && lowStock > 0 ? lowStock : null
@@ -156,7 +150,6 @@ export default function App() {
           })}
         </nav>
 
-        {/* User */}
         <div className="px-4 py-4 border-t border-blue-600">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center text-sm font-bold text-white uppercase shrink-0">
@@ -170,9 +163,7 @@ export default function App() {
         </div>
       </aside>
 
-      {/* ── Main area ─────────────────────────────────────── */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Mobile top bar */}
         <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-blue-700 text-white shrink-0">
           <div className="flex items-center gap-2">
             <ShoppingCart size={20} />
@@ -186,7 +177,6 @@ export default function App() {
           </div>
         </header>
 
-        {/* Desktop page header */}
         <header className="hidden lg:flex items-center justify-between px-8 py-4 bg-white border-b shrink-0">
           <h1 className="text-xl font-bold text-gray-900">
             {tabs.find((t) => t.id === tab)?.label}
@@ -196,7 +186,6 @@ export default function App() {
           </div>
         </header>
 
-        {/* Content */}
         <main className="flex-1 overflow-hidden">
           {tab === 'sales' && (
             <SalesRegister cashier={cashier} onSaleComplete={loadData} />
@@ -274,7 +263,6 @@ export default function App() {
           )}
         </main>
 
-        {/* Mobile bottom nav */}
         <nav className="lg:hidden flex border-t border-gray-200 bg-white shrink-0">
           {tabs.map(({ id, label, Icon }) => {
             const badge = id === 'stock' && lowStock > 0 ? lowStock : null

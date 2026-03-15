@@ -67,7 +67,6 @@ export default function SaleDetail({ sale: initialSale, onBack, onUpdated }: Pro
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 bg-white border-b">
         <button onClick={onBack} className="p-1.5 rounded-lg hover:bg-gray-100">
           <ArrowLeft size={20} />
@@ -82,7 +81,6 @@ export default function SaleDetail({ sale: initialSale, onBack, onUpdated }: Pro
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {/* Meta */}
         <div className="px-4 py-3 bg-white border-b grid grid-cols-2 gap-3">
           <div className="bg-gray-50 rounded-xl p-3">
             <p className="text-xs text-gray-500 mb-0.5">Cajero</p>
@@ -102,7 +100,6 @@ export default function SaleDetail({ sale: initialSale, onBack, onUpdated }: Pro
           </div>
         </div>
 
-        {/* Items */}
         <div className="px-4 py-3 bg-white mt-2">
           <p className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
             <Package size={16} /> Productos vendidos
@@ -148,7 +145,6 @@ export default function SaleDetail({ sale: initialSale, onBack, onUpdated }: Pro
           </div>
         </div>
 
-        {/* Totals */}
         <div className="px-4 py-4 bg-white mt-2 space-y-2 mb-20">
           <div className="flex justify-between text-sm text-gray-600">
             <span>Subtotal</span>

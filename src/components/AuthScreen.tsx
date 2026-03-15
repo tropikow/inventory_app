@@ -8,7 +8,6 @@ interface Props {
   onAuthenticated: () => void
 }
 
-// ── Shared input ──────────────────────────────────────────────
 function Field({
   label,
   type,
@@ -57,7 +56,6 @@ function Field({
   )
 }
 
-// ── Login ─────────────────────────────────────────────────────
 function LoginView({ onAuthenticated, goForgot, goRegister }: {
   onAuthenticated: () => void
   goForgot: () => void
@@ -159,7 +157,6 @@ function LoginView({ onAuthenticated, goForgot, goRegister }: {
   )
 }
 
-// ── Forgot password ───────────────────────────────────────────
 function ForgotView({ goBack }: { goBack: () => void }) {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
@@ -230,7 +227,6 @@ function ForgotView({ goBack }: { goBack: () => void }) {
   )
 }
 
-// ── Register ──────────────────────────────────────────────────
 const AREA_CODES = [
   { code: '+1', label: 'EE.UU. / Canadá (+1)' },
   { code: '+52', label: 'México (+52)' },
@@ -382,7 +378,6 @@ function RegisterView({ goBack }: { goBack: () => void }) {
         }
       />
 
-      {/* Phone + area code */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Teléfono</label>
         <div className="flex gap-2">
@@ -424,14 +419,12 @@ function RegisterView({ goBack }: { goBack: () => void }) {
   )
 }
 
-// ── Root AuthScreen ───────────────────────────────────────────
 export default function AuthScreen({ onAuthenticated }: Props) {
   const [view, setView] = useState<View>('login')
 
   return (
     <div className="min-h-svh bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="flex items-center justify-center gap-2.5 mb-8">
           <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
             <ShoppingCart size={22} className="text-white" />
@@ -439,7 +432,6 @@ export default function AuthScreen({ onAuthenticated }: Props) {
           <span className="text-2xl font-bold text-white tracking-tight">VentaApp</span>
         </div>
 
-        {/* Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           {view === 'login' && (
             <LoginView
